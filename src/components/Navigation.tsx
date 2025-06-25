@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import logo from "@/public/logos/Logo and Tagline.png";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,9 @@ export default function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-gray-900">Desi Tourism</span>
+              <span className="text-2xl font-bold text-gray-900">
+                <Image src="/logo.png" alt="Logo" width={150} height={60} />
+              </span>
             </Link>
           </div>
 
