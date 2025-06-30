@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { useTour } from '@/context/TourContext';
+import Image from 'next/image';
 
 export default function ItineraryPage() {
   const [formData, setFormData] = useState({
@@ -9,6 +11,8 @@ export default function ItineraryPage() {
     budget: '',
     travelDates: '',
   })
+
+  const { tourDestinations, removeDestination } = useTour();
 
   const interests = [
     'Historical Sites',
@@ -41,6 +45,43 @@ export default function ItineraryPage() {
         Create Your Bundelkhand Itinerary
       </h1>
       
+      {/* Selected Destinations */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Your Selected Destinations</h2>
+        {tourDestinations.length > 0 ? (
+          <div className="space-y-4">
+            {tourDestinations.map(destination => (
+              <div key={destination.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+                    <Image 
+                      src={destination.image}
+                      alt={destination.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">{destination.name}</h3>
+                    <p className="text-gray-500">{destination.title}</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => removeDestination(destination.id)}
+                  className="text-red-500 hover:text-red-700 font-semibold"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 bg-gray-100 p-6 rounded-lg">
+            You haven't added any destinations yet. Go back to the homepage to add some!
+          </p>
+        )}
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Duration */}
         <div>

@@ -3,23 +3,25 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/public/logos/Logo and Tagline.png";
+import { useTour } from "@/context/TourContext";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { tourDestinations } = useTour();
 
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Destinations", href: "/destinations" },
-    { name: "Customized Tours", href: "/itinerary" },
     { name: "Homestays", href: "/stays" },
     { name: "Local Guides", href: "/guides" },
     { name: "Culture & Crafts", href: "/experiences" },
     { name: "About", href: "/about" },
   ];
 
+  const tourItemCount = tourDestinations.length;
+
   return (
-    <nav className="absolute w-full top-0 z-50 bg-white/10 backdrop-blur-sm">
+    <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -41,6 +43,17 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
+            <Link
+              href="/itinerary"
+              className="relative text-gray-800 hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Customized Tour
+              {tourItemCount > 0 && (
+                <span className="absolute top-0 right-0 -mt-1 -mr-2 flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
+                  {tourItemCount}
+                </span>
+              )}
+            </Link>
             <Link
               href="/contact"
               className="bg-primary text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors ml-4"
@@ -96,6 +109,18 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
+            <Link
+              href="/itinerary"
+              className="relative text-gray-800 hover:text-primary block px-3 py-2 text-base font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Customized Tour
+              {tourItemCount > 0 && (
+                <span className="absolute top-1 right-2 flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
+                  {tourItemCount}
+                </span>
+              )}
+            </Link>
             <Link
               href="/contact"
               className="bg-primary text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/90"

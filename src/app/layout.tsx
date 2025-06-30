@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { TourProvider } from "@/context/TourContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
-        <main className="min-h-screen pt-16">
-          {children}
-        </main>
-        <Footer />
+        <TourProvider>
+          <Navigation />
+          <main className="min-h-screen pt-16">
+            {children}
+          </main>
+          <Footer />
+        </TourProvider>
       </body>
     </html>
   );

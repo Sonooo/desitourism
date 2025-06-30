@@ -1,75 +1,126 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { useTour } from "@/context/TourContext";
 
 const destinations = [
   {
     id: 1,
     name: "Jhansi",
     title: "Land of Rani Lakshmibai",
-    description: "The gateway to Bundelkhand, forever etched in India's freedom struggle",
-    image: "https://pplx-res.cloudinary.com/image/upload/v1749746753/pplx_project_search_images/78d7a2851a0ed6bc97272468db39f2dffe422cdb.jpg",
+    description: "The gateway to Bundelkhand, forever etched in India's freedom struggle.",
+    image: "/City Photos/Jhansi fort photo.jpg",
     attractions: ["Jhansi Fort", "Rani Mahal", "Government Museum"]
   },
   {
     id: 2,
     name: "Orchha",
     title: "The Hidden Jewel",
-    description: "A town where time stands still, showcasing Bundela architectural grandeur",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2070",
+    description: "A town where time stands still, showcasing Bundela architectural grandeur.",
+    image: "/City Photos/Orchha (1).jpg",
     attractions: ["Orchha Fort Complex", "Raja Ram Temple", "Betwa River Cenotaphs"]
   },
   {
     id: 3,
-    name: "Chitrakoot",
-    title: "Spiritual Abode",
-    description: "Sacred land where Lord Rama spent years of exile, steeped in mythology",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076",
-    attractions: ["Ram Ghat", "Kamadgiri Hill", "Gupt Godavari Caves"]
+    name: "Gwalior",
+    title: "The Fort City",
+    description: "Home to a majestic hill fort, considered one of the most formidable in India.",
+    image: "/City Photos/gwaliorfort.jpg",
+    attractions: ["Gwalior Fort", "Jai Vilas Palace", "Sas Bahu Temple"]
+  },
+  {
+    id: 4,
+    name: "Shivpuri",
+    title: "The Summer Capital",
+    description: "The erstwhile summer capital of the Scindias, known for its lush forests and wildlife.",
+    image: "/City Photos/Shivpuri.jpg",
+    attractions: ["Madhav National Park", "Chhatri", "Bhadaiya Kund"]
   }
 ];
 
+const heroSlides = [
+  {
+    image: "https://pplx-res.cloudinary.com/image/upload/v1749746753/pplx_project_search_images/78d7a2851a0ed6bc97272468db39f2dffe422cdb.jpg",
+    title: "Experience the Heart of India",
+    subtitle: "Where History Lives, Culture Thrives",
+    description:
+      "Discover the timeless charm of Bundelkhand, where majestic forts tell tales of valor, ancient temples whisper spiritual secrets, and vibrant traditions come alive through generations-old customs.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=2070",
+    title: "Explore Hidden Gems",
+    subtitle: "Unveil the Mysteries of Bundelkhand",
+    description:
+      "Journey through ancient towns, marvel at architectural wonders, and immerse yourself in the vibrant culture that defines this unique region.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076",
+    title: "Spiritual Sojourns Await",
+    subtitle: "Find Peace in Sacred Spaces",
+    description:
+      "Walk the paths of legends and experience the spiritual serenity that has drawn pilgrims for centuries to Bundelkhand's holy sites.",
+  },
+];
+
 export default function Home() {
+  const { tourDestinations, addDestination } = useTour();
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[90vh] flex items-center justify-center">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://pplx-res.cloudinary.com/image/upload/v1749746753/pplx_project_search_images/78d7a2851a0ed6bc97272468db39f2dffe422cdb.jpg"
-            alt="Bundelkhand Heritage"
-            fill
-            className="object-cover brightness-40"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
-        </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Experience the Heart of India
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-200">
-            Where History Lives, Culture Thrives
-          </p>
-          <p className="text-lg md:text-xl mb-12 text-gray-300">
-            Discover the timeless charm of Bundelkhand, where majestic forts tell tales of valor, 
-            ancient temples whisper spiritual secrets, and vibrant traditions come alive through 
-            generations-old customs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/itinerary"
-              className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition text-lg"
-            >
-              Create Your Tour
-            </Link>
-            <Link
-              href="/destinations"
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition text-lg"
-            >
-              Explore Destinations
-            </Link>
-          </div>
-        </div>
+        <Swiper
+          className="absolute inset-0 z-0 h-full w-full"
+          modules={[Autoplay, Navigation, Pagination]}
+          spaceBetween={0}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ 
+            delay: 5000, 
+            disableOnInteraction: false 
+          }}
+          navigation
+          pagination={{ clickable: true }}
+        >
+          {heroSlides.map((slide, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="absolute inset-0 w-full h-full">
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  className="object-cover brightness-40"
+                  priority={idx === 0}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
+              </div>
+              <div className="relative z-10 flex flex-col items-center justify-center h-[90vh] text-center text-white px-6 max-w-4xl mx-auto [text-shadow:_0_2px_4px_rgb(0_0_0_/_50%)]">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6">{slide.title}</h1>
+                <p className="text-xl md:text-2xl mb-8 text-gray-200">{slide.subtitle}</p>
+                <p className="text-lg md:text-xl mb-12 text-gray-300 max-w-3xl">{slide.description}</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    href="/itinerary"
+                    className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition text-lg"
+                  >
+                    Create Your Tour
+                  </Link>
+                  <Link
+                    href="/destinations"
+                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition text-lg"
+                  >
+                    Explore Destinations
+                  </Link>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
 
       {/* Destinations Section */}
@@ -83,51 +134,63 @@ export default function Home() {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {destinations.map((destination) => (
-              <div
-                key={destination.id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition group"
-              >
-                <div className="relative h-64">
-                  <Image
-                    src={destination.image}
-                    alt={destination.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition duration-300"
-                  />
+            {destinations.map((destination) => {
+              const isInTour = tourDestinations.some(d => d.id === destination.id);
+
+              return (
+                <div
+                  key={destination.id}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition group"
+                >
+                  <div className="relative h-64">
+                    <Image
+                      src={destination.image}
+                      alt={destination.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold mb-2">{destination.name}</h3>
+                    <p className="text-lg text-primary font-semibold mb-3">
+                      {destination.title}
+                    </p>
+                    <p className="text-gray-600 mb-4">{destination.description}</p>
+                    <ul className="space-y-2 mb-6">
+                      {destination.attractions.map((attraction) => (
+                        <li key={attraction} className="flex items-center text-gray-700">
+                          <svg
+                            className="w-4 h-4 mr-2 text-primary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          {attraction}
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      onClick={() => addDestination(destination)}
+                      disabled={isInTour}
+                      className={`w-full py-3 rounded-lg transition ${
+                        isInTour
+                          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                          : "bg-primary text-white hover:bg-primary/90"
+                      }`}
+                    >
+                      {isInTour ? "Added to Tour" : "Add to Tour"}
+                    </button>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{destination.name}</h3>
-                  <p className="text-lg text-primary font-semibold mb-3">
-                    {destination.title}
-                  </p>
-                  <p className="text-gray-600 mb-4">{destination.description}</p>
-                  <ul className="space-y-2 mb-6">
-                    {destination.attractions.map((attraction) => (
-                      <li key={attraction} className="flex items-center text-gray-700">
-                        <svg
-                          className="w-4 h-4 mr-2 text-primary"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {attraction}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition">
-                    Add to Tour
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

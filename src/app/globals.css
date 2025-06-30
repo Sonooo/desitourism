@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom Swiper Styles */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #ffffff !important; /* White arrows */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  border-radius: 50%;
+  width: 44px !important;
+  height: 44px !important;
+  transition: background-color 0.3s;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 18px !important;
+  font-weight: 900;
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: background-color 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffffff !important;
+}
