@@ -46,6 +46,13 @@ const destinations = [
 
 const heroSlides = [
   {
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076",
+    title: "Spiritual Sojourns Await",
+    subtitle: "Find Peace in Sacred Spaces",
+    description:
+      "Walk the paths of legends and experience the spiritual serenity that has drawn pilgrims for centuries to Bundelkhand's holy sites.",
+  },
+  {
     image: "https://pplx-res.cloudinary.com/image/upload/v1749746753/pplx_project_search_images/78d7a2851a0ed6bc97272468db39f2dffe422cdb.jpg",
     title: "Experience the Heart of India",
     subtitle: "Where History Lives, Culture Thrives",
@@ -59,13 +66,7 @@ const heroSlides = [
     description:
       "Journey through ancient towns, marvel at architectural wonders, and immerse yourself in the vibrant culture that defines this unique region.",
   },
-  {
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=2076",
-    title: "Spiritual Sojourns Await",
-    subtitle: "Find Peace in Sacred Spaces",
-    description:
-      "Walk the paths of legends and experience the spiritual serenity that has drawn pilgrims for centuries to Bundelkhand's holy sites.",
-  },
+  
 ];
 
 export default function Home() {
@@ -76,7 +77,7 @@ export default function Home() {
       <section className="relative h-[90vh] flex items-center justify-center">
         <Swiper
           className="absolute inset-0 z-0 h-full w-full"
-          modules={[Autoplay, Navigation, Pagination]}
+          modules={[Autoplay, Pagination]}
           spaceBetween={0}
           slidesPerView={1}
           loop={true}
@@ -84,7 +85,6 @@ export default function Home() {
             delay: 5000, 
             disableOnInteraction: false 
           }}
-          navigation
           pagination={{ clickable: true }}
         >
           {heroSlides.map((slide, idx) => (
@@ -97,22 +97,28 @@ export default function Home() {
                   className="object-cover brightness-40"
                   priority={idx === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40" />
               </div>
-              <div className="relative z-10 flex flex-col items-center justify-center h-[90vh] text-center text-white px-6 max-w-4xl mx-auto [text-shadow:_0_2px_4px_rgb(0_0_0_/_50%)]">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">{slide.title}</h1>
-                <p className="text-xl md:text-2xl mb-8 text-gray-200">{slide.subtitle}</p>
-                <p className="text-lg md:text-xl mb-12 text-gray-300 max-w-3xl">{slide.description}</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="relative z-10 flex flex-col items-center justify-center h-[90vh] text-center text-white px-6 max-w-4xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)] animate-fadein">
+                <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight md:leading-tight">
+                  {slide.title}
+                </h1>
+                <p className="text-lg md:text-2xl mb-4 md:mb-8 text-gray-200 font-medium">
+                  {slide.subtitle}
+                </p>
+                <p className="text-base md:text-lg mb-8 md:mb-12 text-gray-300 max-w-2xl mx-auto">
+                  {slide.description}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-2">
                   <Link
                     href="/itinerary"
-                    className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition text-lg"
+                    className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition text-lg shadow-lg"
                   >
                     Create Your Tour
                   </Link>
                   <Link
                     href="/destinations"
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition text-lg"
+                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition text-lg shadow-lg"
                   >
                     Explore Destinations
                   </Link>
