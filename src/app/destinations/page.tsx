@@ -23,14 +23,6 @@ const destinations = [
   },
   {
     id: 3,
-    name: "Gwalior",
-    title: "The Fort City",
-    description: "Home to a majestic hill fort, considered one of the most formidable in India.",
-    image: "/City Photos/gwaliorfort.jpg",
-    attractions: ["Gwalior Fort", "Jai Vilas Palace", "Sas Bahu Temple"]
-  },
-  {
-    id: 4,
     name: "Shivpuri",
     title: "The Summer Capital",
     description: "The erstwhile summer capital of the Scindias, known for its lush forests and wildlife.",

@@ -8,9 +8,12 @@ import { TourProvider } from "@/context/TourContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bundelkhand Tourism - Experience the Rich Heritage",
-  description: "Discover the rich cultural heritage of Bundelkhand through personalized itineraries, local stays, guided tours, and authentic cultural experiences.",
+  title: "Desi Tourism",
+  description: "Desi Tourism - Explore the heart of India with customized tours and authentic experiences.",
   keywords: "Bundelkhand, Tourism, Heritage, Temples, Forts, Local Stays, Cultural Experiences",
+  icons: {
+    icon: "/logo.png"
+  }
 };
 
 export default function RootLayout({

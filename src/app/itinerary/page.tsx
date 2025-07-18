@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 export default function ItineraryPage() {
   const [formData, setFormData] = useState({
+    numberOfPeople: 1,
     duration: '',
     interests: [] as string[],
     budget: '',
@@ -83,6 +84,21 @@ export default function ItineraryPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
+        {/* Number of People */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Number of People
+          </label>
+          <input
+            type="number"
+            min={1}
+            value={formData.numberOfPeople}
+            onChange={(e) => setFormData(prev => ({ ...prev, numberOfPeople: Number(e.target.value) }))}
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+            required
+          />
+        </div>
+
         {/* Duration */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">

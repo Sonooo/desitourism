@@ -28,14 +28,6 @@ const destinations = [
   },
   {
     id: 3,
-    name: "Gwalior",
-    title: "The Fort City",
-    description: "Home to a majestic hill fort, considered one of the most formidable in India.",
-    image: "/City Photos/gwaliorfort.jpg",
-    attractions: ["Gwalior Fort", "Jai Vilas Palace", "Sas Bahu Temple"]
-  },
-  {
-    id: 4,
     name: "Shivpuri",
     title: "The Summer Capital",
     description: "The erstwhile summer capital of the Scindias, known for its lush forests and wildlife.",
@@ -138,11 +130,9 @@ export default function Home() {
           <p className="text-xl text-gray-600 text-center mb-12">
             Explore the magnificent heritage sites and cultural treasures of Bundelkhand
           </p>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {destinations.map((destination) => {
               const isInTour = tourDestinations.some(d => d.id === destination.id);
-
               return (
                 <div
                   key={destination.id}
@@ -197,6 +187,12 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+          {/* Customise Your Trip Button */}
+          <div className="flex justify-center mt-12">
+            <Link href="/itinerary" className="bg-primary text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg hover:bg-primary/90 transition">
+              Customise Your Trip
+            </Link>
           </div>
         </div>
       </section>
@@ -306,6 +302,14 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* News Update Section */}
+      <section className="py-16 px-4 bg-gray-50 border-t border-gray-200 mt-12">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4 text-primary">Desi Tourism at MP Tourism Roadshow</h2>
+          <p className="text-lg text-gray-700">Stay tuned for the latest updates and news from Desi Tourism's participation at the MP Tourism Roadshow. Exciting announcements coming soon!</p>
         </div>
       </section>
     </div>
